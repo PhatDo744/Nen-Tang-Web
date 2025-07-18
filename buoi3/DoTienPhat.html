@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buoi3</title>
+    <style>
+        h2 {
+            background-color: darkslategray;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+            margin-top: 15px;
+            padding-right: 10px;
+            margin-bottom: 5px;
+            color: darkslategray;
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 300px;
+            padding: 10px;
+            margin-left: 0px;
+            border: 2px solid gainsboro;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form-control:focus {
+            border-color: #435d7d;
+            outline: none;
+        }
+
+        input[type="radio"] {
+            margin-left: 20px;
+            margin-right: 5px;
+            transform: scale(1.2);
+            accent-color: #435d7d;
+        }
+
+        input[type="radio"]:checked {
+            accent-color: cadetblue;
+            background-color: cadetblue;
+        }
+
+        label[for^="gender"] {
+            width: auto;
+            margin-left: 0;
+            margin-right: 15px;
+        }
+
+        textarea.form-control {
+            width: 406px;
+            height: 100px;
+            resize: none;
+        }
+
+        .btn {
+            background-color: cadetblue;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: #435d7d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <h2>Form thêm sinh viên</h2>
+    <form action="" method="post">
+        <label for="student_id">Mã sinh viên:</label>                   
+        <input class="form-control" type="text" id="student_id" name="student_id" required><br>
+        <label for="name">Họ và tên:</label>
+        <input class="form-control" type="text" id="name" name="name" required><br>
+        <label for="email">Email:</label>
+        <input class="form-control" type="email" id="email" name="email" required><br>
+        <label for="date_of_birth">Ngày sinh:</label>
+        <input class="form-control" type="date" id="date_of_birth" name="date_of_birth" required><br>
+        <label for="gender">Giới tính:</label>
+        <input type="radio" id="gender_male" name="gender" value="male">
+        <label for="gender_male">Nam</label>
+        <input type="radio" id="gender_female" name="gender" value="female">
+        <label for="gender_female">Nữ</label>
+        <input type="radio" id="gender_other" name="gender" value="other">
+        <label for="gender_other">Khác</label><br>
+        <label for="note">Ghi chú:</label><br>
+        <textarea class="form-control" id="note" name="note" rows="4" cols="50"></textarea><br>
+        <input class="btn btn-primary" type="submit" value="Thêm sinh viên">
+    </form>
+    
+    <h2>Bảng hiển thị danh sách sinh viên</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Mã sinh viên</th>
+                <th>Họ tên</th>
+                <th>Email</th>
+                <th>Giới tính</th>
+                <th>Ngày sinh</th>
+                <th colspan="2">Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>SV001</td>
+                <td>Nguyễn Văn A</td>
+                <td>vana@gmail.com</td>
+                <td>Nam</td>
+                <td>2000-01-01</td>
+                <td><a href="">Sửa</a></td>
+                <td><a href="">Xóa</a></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>SV002</td>
+                <td>Trần Thị B</td>
+                <td>tranb@gmail.com</td>
+                <td>Nữ</td>
+                <td>2000-02-02</td>
+                <td><a href="">Sửa</a></td>
+                <td><a href="">Xóa</a></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>SV003</td>
+                <td>Nguyễn Văn C</td>
+                <td>vanc@gmail.com</td>
+                <td>Nam</td>
+                <td>2000-01-01</td>
+                <td><a href="">Sửa</a></td>
+                <td><a href="">Xóa</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
