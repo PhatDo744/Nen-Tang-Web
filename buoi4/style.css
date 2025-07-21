@@ -1,0 +1,272 @@
+/* Reset và Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+}
+
+h2 {
+  background-color: darkslategray;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 20px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+form {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+label {
+  display: inline-block;
+  width: 100%;
+  margin-top: 15px;
+  padding-right: 10px;
+  margin-bottom: 5px;
+  color: darkslategray;
+  font-weight: bold;
+}
+
+.form-control {
+  width: 100%;
+  max-width: 406px;
+  padding: 10px;
+  margin-left: 0px;
+  border: 2px solid gainsboro;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  border-color: #435d7d;
+  outline: none;
+}
+
+input[type="radio"] {
+  margin-left: 20px;
+  margin-right: 5px;
+  transform: scale(1.2);
+  accent-color: #435d7d;
+}
+
+input[type="radio"]:checked {
+  accent-color: cadetblue;
+  background-color: cadetblue;
+}
+
+label[for^="gender"] {
+  width: auto;
+
+}
+
+textarea.form-control {
+  width: 100%;
+  max-width: 406px;
+  height: 100px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.btn {
+  background-color: cadetblue;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.btn:hover {
+  background-color: #435d7d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+th,
+td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+thead th {
+  background-color: darkcyan;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+tbody tr {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+table a {
+  color: darkslategray;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+table a:hover {
+  background-color: darkslategray;
+  color: white;
+}
+
+.navbar {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    text-align: flex-start;
+}
+
+.navbar h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.main-container {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+}
+
+.form-container {
+    flex: 1;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table-container {
+    flex: 2;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+        padding: 10px;
+        gap: 15px;
+    }
+    
+    .form-container, .table-container {
+        padding: 15px;
+    }
+    
+    label {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    
+    .form-control {
+        max-width: 100%;
+    }
+    
+    textarea.form-control {
+        max-width: 100%;
+    }
+    
+    table {
+        font-size: 14px;
+    }
+    
+    th, td {
+        padding: 10px 8px;
+    }
+    
+    .navbar h1 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-container {
+        padding: 5px;
+        gap: 10px;
+    }
+    
+    .form-container, .table-container {
+        padding: 10px;
+    }
+    
+    .navbar {
+        padding: 10px;
+    }
+    
+    .navbar h1 {
+        font-size: 18px;
+    }
+    
+    h2 {
+        font-size: 18px;
+        padding: 10px;
+        margin: 15px 0;
+    }
+    
+    form {
+        padding: 20px;
+    }
+    
+    table {
+        font-size: 12px;
+    }
+    
+    th, td {
+        padding: 8px 5px;
+    }
+    
+    table a {
+        padding: 3px 6px;
+        font-size: 12px;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+        width: 100%;
+    }
+}

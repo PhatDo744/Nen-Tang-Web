@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý sinh viên - Responsive</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <h1>Quản lý sinh viên</h1>
+    </nav>
+    <div class="main-container">
+        <div class="form-container">
+            <h2>Form thêm sinh viên</h2>
+            <form action="" method="post">
+                <label for="student_class">Mã sinh viên:</label>                   
+                <input class="form-control" type="text" class="student_class" name="student_class" required><br>
+                <label for="name">Họ và tên:</label>
+                <input class="form-control" type="text" class="name" name="name" required><br>
+                <label for="email">Email:</label>
+                <input class="form-control" type="email" class="email" name="email" required><br>
+                <label for="date_of_birth">Ngày sinh:</label>
+                <input class="form-control" type="date" class="date_of_birth" name="date_of_birth" required><br>
+                <label for="gender">Giới tính:</label>
+                <input type="radio" class="gender_male" name="gender" value="male">
+                <label for="gender_male">Nam</label>
+                <input type="radio" class="gender_female" name="gender" value="female">
+                <label for="gender_female">Nữ</label>
+                <input type="radio" class="gender_other" name="gender" value="other">
+                <label for="gender_other">Khác</label><br>
+                <label for="note">Ghi chú:</label><br>
+                <textarea class="form-control" class="note" name="note" rows="4" cols="50"></textarea><br>
+                <input class="btn btn-primary" type="submit" value="Thêm sinh viên">
+            </form>
+        </div>
+        <div class="table-container">
+            <h2>Bảng hiển thị danh sách sinh viên</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã sinh viên</th>
+                        <th>Họ tên</th>
+                        <th>Email</th>
+                        <th>Giới tính</th>
+                        <th>Ngày sinh</th>
+                        <th colspan="2">Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>SV001</td>
+                        <td>Nguyễn Văn A</td>
+                        <td>vana@gmail.com</td>
+                        <td>Nam</td>
+                        <td>2000-01-01</td>
+                        <td><a href="">Sửa</a></td>
+                        <td><a href="">Xóa</a></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>SV002</td>
+                        <td>Trần Thị B</td>
+                        <td>tranb@gmail.com</td>
+                        <td>Nữ</td>
+                        <td>2000-02-02</td>
+                        <td><a href="">Sửa</a></td>
+                        <td><a href="">Xóa</a></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>SV003</td>
+                        <td>Nguyễn Văn C</td>
+                        <td>vanc@gmail.com</td>
+                        <td>Nam</td>
+                        <td>2000-01-01</td>
+                        <td><a href="">Sửa</a></td>
+                        <td><a href="">Xóa</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
