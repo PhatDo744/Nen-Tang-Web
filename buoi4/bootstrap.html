@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý sinh viên - Bootstrap</title>
+
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <style>
+
+        body {
+            background-color: #f4f4f4;
+        }
+        
+        .navbar-custom {
+            background-color: #333 !important;
+            padding: 15px;
+        }
+        
+        .navbar-custom h1 {
+            color: white;
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .section-header {
+            background-color: darkslategray;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .form-container, .table-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .form-control {
+            border: 2px solid gainsboro;
+            border-radius: 5px;
+            max-width: 406px;
+        }
+        
+        .form-control:focus {
+            border-color: #435d7d;
+            box-shadow: none;
+        }
+        
+        .form-check-input {
+            transform: scale(1.2);
+            accent-color: #435d7d;
+        }
+        
+        .form-check-input:checked {
+            background-color: cadetblue;
+            border-color: cadetblue;
+        }
+        
+        .btn-custom {
+            background-color: cadetblue;
+            border-color: cadetblue;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .btn-custom:hover {
+            background-color: #435d7d;
+            border-color: #435d7d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .table thead th {
+            background-color: darkcyan;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 15px;
+        }
+        
+        .table tbody tr {
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .table tbody tr:hover {
+            background-color: #f1f1f1;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .table td {
+            padding: 15px;
+        }
+        
+        .action-link {
+            color: darkslategray;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        .action-link:hover {
+            background-color: darkslategray;
+            color: white;
+            text-decoration: none;
+        }
+        
+        label {
+            color: darkslategray;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .form-check-label {
+            margin-left: 5px;
+        }
+        
+        textarea.form-control {
+            height: 100px;
+            resize: vertical;
+            max-width: 406px;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar-custom h1 {
+                font-size: 20px;
+            }
+            
+            .form-container, .table-container {
+                padding: 15px;
+            }
+            
+            .form-control, textarea.form-control {
+                max-width: 100%;
+            }
+            
+            .btn-custom {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .navbar-custom {
+                padding: 10px;
+            }
+            
+            .navbar-custom h1 {
+                font-size: 18px;
+            }
+            
+            .section-header {
+                font-size: 18px;
+                padding: 10px;
+                margin: 15px 0;
+            }
+            
+            .form-container, .table-container {
+                padding: 10px;
+            }
+            
+            .table {
+                font-size: 12px;
+            }
+            
+            .table th, .table td {
+                padding: 8px 5px;
+            }
+            
+            .action-link {
+                padding: 3px 6px;
+                font-size: 12px;
+            }
+            
+            .btn-custom {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-custom">
+        <div class="container-fluid">
+            <h1>Quản lý sinh viên</h1>
+        </div>
+    </nav>
+    <div class="container-fluid p-3">
+        <div class="row g-3">
+            <div class="col-lg-4 col-md-12">
+                <div class="form-container">
+                    <h2 class="section-header">Form thêm sinh viên</h2>
+                    <form action="" method="post">
+                        <div class="mb-3">
+                            <label for="student_class" class="form-label">Mã sinh viên:</label>
+                            <input type="text" class="form-control" id="student_class" name="student_class" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Họ và tên:</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="date_of_birth" class="form-label">Ngày sinh:</label>
+                            <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Giới tính:</label>
+                            <div class="d-flex flex-wrap gap-3 mt-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" id="gender_male" value="male">
+                                    <label class="form-check-label" for="gender_male">Nam</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" id="gender_female" value="female">
+                                    <label class="form-check-label" for="gender_female">Nữ</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" id="gender_other" value="other">
+                                    <label class="form-check-label" for="gender_other">Khác</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="note" class="form-label">Ghi chú:</label>
+                            <textarea class="form-control" id="note" name="note" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-custom mt-3">Thêm sinh viên</button>
+                    </form>
+                </div>
+            </div>  
+            <div class="col-lg-8 col-md-12">
+                <div class="table-container">
+                    <h2 class="section-header">Bảng hiển thị danh sách sinh viên</h2>
+                    <div class="table-responsive">
+                        <table class="table table-hover border">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Mã sinh viên</th>
+                                    <th>Họ tên</th>
+                                    <th>Email</th>
+                                    <th>Giới tính</th>
+                                    <th>Ngày sinh</th>
+                                    <th colspan="2">Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>SV001</td>
+                                    <td>Nguyễn Văn A</td>
+                                    <td>vana@gmail.com</td>
+                                    <td>Nam</td>
+                                    <td>2000-01-01</td>
+                                    <td><a href="#" class="action-link">Sửa</a></td>
+                                    <td><a href="#" class="action-link">Xóa</a></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>SV002</td>
+                                    <td>Trần Thị B</td>
+                                    <td>tranb@gmail.com</td>
+                                    <td>Nữ</td>
+                                    <td>2000-02-02</td>
+                                    <td><a href="#" class="action-link">Sửa</a></td>
+                                    <td><a href="#" class="action-link">Xóa</a></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>SV003</td>
+                                    <td>Nguyễn Văn C</td>
+                                    <td>vanc@gmail.com</td>
+                                    <td>Nam</td>
+                                    <td>2000-01-01</td>
+                                    <td><a href="#" class="action-link">Sửa</a></td>
+                                    <td><a href="#" class="action-link">Xóa</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="bootstrap.bundle.min.js"></script>
+</body>
+</html>
