@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trường đại học Thủy Lợi</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="all.min.css">
+    <script src="jquery-3.6.0.min.js"></script>
+	<script src="jquery.validate.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: black;
+            color: white;
+        }
+        
+        .footer {
+            background-color: #001373;
+            color: white;
+        }
+        .header {
+            padding: 1rem 2rem;
+        }
+        .footer {
+            padding: 1.5rem 2rem 1.5rem 11rem;
+            margin-top: 2rem;
+            margin-bottom: 0;
+        }
+        .card-main {
+            background-color: white;
+            border: none;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 0;
+            overflow: hidden;
+        }
+        .table {
+            margin-bottom: 0;
+        }
+        .table > :not(caption) > * > * {
+            padding: 0.9rem 0.75rem;
+            border-bottom-width: 1px;
+        }
+        .table > thead {
+            background-color: black;
+            color: white;
+            vertical-align: middle;
+        }
+        .table > tbody > tr > td {
+            vertical-align: middle;
+        }
+        .action-buttons-group {
+            display: inline-flex;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .table-action-btn {
+            width: 35px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            border-radius: 0;
+            font-size: 0.9rem; 
+        }
+        .table-action-btn .fas {
+            color: black; 
+        }
+        .btn-view { background-color: #5D9CEC; }
+        .btn-edit { background-color: #FFCE54; }
+        .btn-delete { background-color: #ED5565; }
+
+        .modal-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .form-control.is-invalid {
+            border-color: #dc3545;
+        }
+        .invalid-feedback {
+            display: block;
+        }
+        .card-header-custom {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid #dee2e6;
+            background-color: #fff;
+        }
+        .card-footer-custom {
+            padding: 1rem 1.25rem;
+            border-top: 1px solid #dee2e6;
+            background-color: #fff;
+        }
+        .table tfoot td {
+            padding: 0.75rem 1.25rem;
+            border-top: 1px solid #dee2e6;
+        }
+        .form-check-input {
+            cursor: pointer;
+        }
+        
+        .toolbar-btn-group .btn {
+            border-radius: 0.375rem;
+            display: inline-flex;
+            align-items: center;
+        }
+        .toolbar-btn-group .btn-primary {
+            background-color: #a9cff8;
+            border-color: #a9cff8;
+            color: #212529;
+            font-weight: 500;
+        }
+        .toolbar-btn-group .btn-light {
+            background-color: #f8f9fa;
+            border-color: #dee2e6;
+            color: #212529;
+        }
+        .btn-delete-selected {
+            background-color: #ED5565;
+            color: #212529;
+            border: none;
+        }
+        .btn-delete-selected .fas {
+             color: black;
+        }
+        
+        .pagination-custom {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .pagination-custom .page-item .page-link {
+            border: none;
+            background-color: transparent;
+            color: #6c757d;
+            border-radius: 0.375rem;
+            padding: 0.375rem 0.75rem;
+        }
+        .pagination-custom .page-item.active .page-link {
+            background-color: #a9cff8;
+            color: #343a40;
+            font-weight: 600;
+        }
+        .pagination-custom .page-item.disabled .page-link {
+            color: #adb5bd;
+        }
+        .sort-icons {
+            display: inline-flex;
+            flex-direction: column;
+            margin-left: auto;
+            vertical-align: middle;
+            line-height: 0.7;
+            float: right;
+        }
+        .sort-icons .fas {
+            font-size: 0.8em;
+            opacity: 0.6;
+        }
+        
+        .table th {
+            position: relative;
+            padding-right: 2rem;
+        }
+    </style>
+</head>
+<body> 
+    <header class="header d-flex justify-content-between align-items-center">
+        <h4 class="mb-0">Trường Đại học Thủy Lợi</h4>
+        <div class="d-flex align-items-center">
+            <a href="#" class="text-white text-decoration-none me-4">Trang chủ</a>
+            <a href="#" class="text-decoration-none me-4" style="color: #6c757d;">Quản lý cửa hàng</a>
+            <form class="d-flex align-items-center">
+                <input class="form-control me-2" type="search" placeholder="Nhập nội dung tìm kiếm" style="width: 250px;">
+                <button class="btn btn-outline-success" type="submit">Tìm kiếm</button>
+            </form>
+        </div>
+    </header>
+
+    <main class="container-fluid mt-4" style="flex: 1;">
+        <div class="card card-main">
+
+            <div class="card-header-custom d-flex justify-content-between align-items-center">
+                <div class="btn-group toolbar-btn-group" role="group">
+                    <button class="btn btn-primary btn-sm" id="openAddModalBtn">
+                         <span class="fa-stack me-1" style="font-size: 0.65em; vertical-align: -0.1em;">
+                            <i class="fas fa-circle fa-stack-2x" style="color: black;"></i>
+                            <i class="fas fa-plus fa-stack-1x fa-inverse"></i>
+                        </span>
+                        THÊM
+                    </button>
+                    <button class="btn btn-light btn-sm">
+                        <i class="fas fa-upload me-1"></i> XUẤT RA FILE &rsaquo;
+                    </button>
+                </div>
+                <div class="input-group input-group-sm w-50">
+                    <button class="btn btn-outline-secondary" type="button" disabled>&rsaquo;</button>
+                    <input type="text" class="form-control" placeholder="Tìm kiếm giao dịch">
+                    <button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="d-flex align-items-center">
+                    <span class="me-2 text-muted">Kết quả</span>
+                    <select class="form-select form-select-sm" style="width: 70px;">
+                        <option selected>5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center"><input type="checkbox" class="form-check-input" id="selectAllCheckbox"></th>
+                            <th scope="col">Hành động</th>
+                            <th scope="col">ID<span class="sort-icons"><i class="fas fa-sort-up"></i><i class="fas fa-sort-down"></i></span></th>
+                            <th scope="col">Khách hàng<span class="sort-icons"><i class="fas fa-sort-up"></i><i class="fas fa-sort-down"></i></span></th>
+                            <th scope="col">Nhân viên<span class="sort-icons"><i class="fas fa-sort-up"></i><i class="fas fa-sort-down"></i></span></th>
+                            <th scope="col">Số tiền<span class="sort-icons"><i class="fas fa-sort-up"></i><i class="fas fa-sort-down"></i></span></th>
+                            <th scope="col">Ngày mua<span class="sort-icons"><i class="fas fa-sort-up"></i><i class="fas fa-sort-down"></i></span></th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionTableBody">
+                        <tr>
+                            <td class="text-center"><input type="checkbox" class="form-check-input row-checkbox"></td>
+                            <td>
+                                <div class="action-buttons-group">
+                                    <button class="btn btn-sm btn-view table-action-btn"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-edit table-action-btn"><i class="fas fa-pencil-alt"></i></button>
+                                    <button class="btn btn-sm btn-delete table-action-btn"><i class="fas fa-times-circle"></i></button>
+                                </div>
+                            </td>
+                            <td>1102</td>
+                            <td>Võ Hoài An</td>
+                            <td>Mai Thục Anh</td>
+                            <td>250.000</td>
+                            <td>06 Tháng 6 2024 9:00</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><input type="checkbox" class="form-check-input row-checkbox"></td>
+                            <td>
+                                <div class="action-buttons-group">
+                                    <button class="btn btn-sm btn-view table-action-btn"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-edit table-action-btn"><i class="fas fa-pencil-alt"></i></button>
+                                    <button class="btn btn-sm btn-delete table-action-btn"><i class="fas fa-times-circle"></i></button>
+                                </div>
+                            </td>
+                            <td>1199</td>
+                            <td>Hoàng Thị Thảo</td>
+                            <td>Nguyễn Văn Hồng</td>
+                            <td>600.000</td>
+                            <td>06 Tháng 6 2024 9:03</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><input type="checkbox" class="form-check-input row-checkbox"></td>
+                            <td>
+                                 <div class="action-buttons-group">
+                                    <button class="btn btn-sm btn-view table-action-btn"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-edit table-action-btn"><i class="fas fa-pencil-alt"></i></button>
+                                    <button class="btn btn-sm btn-delete table-action-btn"><i class="fas fa-times-circle"></i></button>
+                                </div>
+                            </td>
+                            <td>1239</td>
+                            <td>Huỳnh Huy Quang</td>
+                            <td>Nguyễn Văn Hồng</td>
+                            <td>934.000</td>
+                            <td>06 Tháng 6 2024 9:10</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><input type="checkbox" class="form-check-input row-checkbox"></td>
+                            <td>
+                                <div class="action-buttons-group">
+                                    <button class="btn btn-sm btn-view table-action-btn"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-edit table-action-btn"><i class="fas fa-pencil-alt"></i></button>
+                                    <button class="btn btn-sm btn-delete table-action-btn"><i class="fas fa-times-circle"></i></button>
+                                </div>
+                            </td>
+                            <td>1677</td>
+                            <td>Huỳnh Văn Nam</td>
+                            <td>Mai Thục Anh</td>
+                            <td>150.000</td>
+                            <td>06 Tháng 6 2024 9:20</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><input type="checkbox" class="form-check-input row-checkbox"></td>
+                            <td>
+                                <div class="action-buttons-group">
+                                    <button class="btn btn-sm btn-view table-action-btn"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-edit table-action-btn"><i class="fas fa-pencil-alt"></i></button>
+                                    <button class="btn btn-sm btn-delete table-action-btn"><i class="fas fa-times-circle"></i></button>
+                                </div>
+                            </td>
+                            <td>1439</td>
+                            <td>Nguyễn Hồng Minh</td>
+                            <td>Mai Thục Anh</td>
+                            <td>354.000</td>
+                            <td>06 Tháng 6 2024 9:24</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="7">
+                                <button class="btn btn-delete-selected btn-sm" id="deleteSelectedBtn">
+                                     <i class="fas fa-times-circle me-1"></i> DELETE SELECTED RECORDS
+                                </button>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <div class="card-footer-custom d-flex justify-content-between align-items-center">
+                 <nav class="pagination-custom">
+                    <span class="text-muted me-2">Trang</span>
+                    <ul class="pagination pagination-sm mb-0">
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                        <li class="page-item"><a class="page-link" href="#">6</a></li>
+                        <li class="page-item"><a class="page-link" href="#">&rsaquo;</a></li>
+                        <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                    </ul>
+                </nav>
+                <span class="text-muted small">Kết quả 1 trong 20 trang</span>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <h5>TRƯỜNG ĐẠI HỌC THỦY LỢI</h5>
+        <p class="mb-0">Địa chỉ: 175 Tây Sơn, Đống Đa, Hà Nội</p>
+        <p class="mb-0">Điện thoại: (024) 38522201 - Fax: (024) 35633351</p>
+        <p class="mb-0">Email: <a href="mailto:phonghcth@tlu.edu.vn">phonghcth@tlu.edu.vn</a></p>
+    </footer>
+    
+    <div class="modal fade" id="addTransactionModal" tabindex="-1" aria-labelledby="addTransactionModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addTransactionModalLabel">Thêm giao dịch</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addTransactionForm" novalidate>
+                        <div class="mb-3">
+                            <label for="customerName" class="form-label">Khách hàng</label>
+                            <input type="text" class="form-control" id="customerName" required>
+                            <div class="invalid-feedback" id="customerNameError"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="employeeName" class="form-label">Nhân viên</label>
+                            <input type="text" class="form-control" id="employeeName" required>
+                            <div class="invalid-feedback" id="employeeNameError"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="amount" class="form-label">Số tiền</label>
+                            <input type="number" class="form-control" id="amount" required>
+                            <div class="invalid-feedback" id="amountError"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-success" id="addTransactionBtn">Thêm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#openAddModalBtn').on('click', function() {
+                var modal = new bootstrap.Modal($('#addTransactionModal')[0]);
+                modal.show();
+                $('#addTransactionForm')[0].reset();
+                clearValidationErrors();
+            });
+
+            function clearValidationErrors() {
+                $('#customerNameError').text('');
+                $('#employeeNameError').text('');
+                $('#amountError').text('');
+                
+                $('#customerName').removeClass('is-invalid');
+                $('#employeeName').removeClass('is-invalid');
+                $('#amount').removeClass('is-invalid');
+            }
+
+            function validateForm() {
+                let isValid = true;
+                
+                const customerName = $('#customerName').val().trim();
+                if (!customerName) {
+                    $('#customerName').addClass('is-invalid');
+                    $('#customerNameError').text('Vui lòng nhập tên khách hàng');
+                    isValid = false;
+                } else if (customerName.length > 30) {
+                    $('#customerName').addClass('is-invalid');
+                    $('#customerNameError').text('Tên khách hàng không được quá 30 ký tự');
+                    isValid = false;
+                } else {
+                    $('#customerName').removeClass('is-invalid');
+                    $('#customerNameError').text('');
+                }
+                
+                const employeeName = $('#employeeName').val().trim();
+                if (!employeeName) {
+                    $('#employeeName').addClass('is-invalid');
+                    $('#employeeNameError').text('Vui lòng nhập tên nhân viên');
+                    isValid = false;
+                } else if (employeeName.length > 30) {
+                    $('#employeeName').addClass('is-invalid');
+                    $('#employeeNameError').text('Tên nhân viên không được quá 30 ký tự');
+                    isValid = false;
+                } else {
+                    $('#employeeName').removeClass('is-invalid');
+                    $('#employeeNameError').text('');
+                }
+                
+                const amount = $('#amount').val();
+                if (!amount) {
+                    $('#amount').addClass('is-invalid');
+                    $('#amountError').text('Vui lòng nhập số tiền');
+                    isValid = false;
+                } else {
+                    $('#amount').removeClass('is-invalid');
+                    $('#amountError').text('');
+                }
+                
+                return isValid;
+            }
+
+            $('#addTransactionBtn').on('click', function() {
+                if (!validateForm()) {
+                    return false;
+                }
+                
+                const customerName = $('#customerName').val().trim();
+                const employeeName = $('#employeeName').val().trim();
+                const amount = $('#amount').val();
+                
+                const id = Math.floor(1000 + Math.random() * 9000);
+                
+                const now = new Date();
+                const day = now.getDate().toString().padStart(2, '0');
+                const month = now.getMonth() + 1;
+                const year = now.getFullYear();
+                const hours = now.getHours().toString().padStart(2, '0');
+                const minutes = now.getMinutes().toString().padStart(2, '0');
+                const dateStr = `${day} Tháng ${month} ${year} ${hours}:${minutes}`;
+                
+                const formattedAmount = parseFloat(amount).toLocaleString('vi-VN');
+                
+                const newRowHtml = `
+                    <tr>
+                        <td class="text-center"><input type="checkbox" class="form-check-input row-checkbox"></td>
+                        <td>
+                            <div class="action-buttons-group">
+                                <button class="btn btn-sm btn-view table-action-btn"><i class="fas fa-eye"></i></button>
+                                <button class="btn btn-sm btn-edit table-action-btn"><i class="fas fa-pencil-alt"></i></button>
+                                <button class="btn btn-sm btn-delete table-action-btn"><i class="fas fa-times-circle"></i></button>
+                            </div>
+                        </td>
+                        <td>${id}</td>
+                        <td>${customerName}</td>
+                        <td>${employeeName}</td>
+                        <td>${formattedAmount}</td>
+                        <td>${dateStr}</td>
+                    </tr>
+                `;
+                
+                $('#transactionTableBody').prepend(newRowHtml);
+                
+                const modal = bootstrap.Modal.getInstance($('#addTransactionModal')[0]);
+                modal.hide();
+                
+                $('#addTransactionForm')[0].reset();
+            });
+
+            $(document).on('click', '.btn-delete', function() {
+                if (confirm('Bạn có chắc chắn muốn xóa giao dịch này?')) {
+                    $(this).closest('tr').remove();
+                }
+            });
+
+            $('#deleteSelectedBtn').on('click', function() {
+                const selectedRows = $('.row-checkbox:checked');
+                if (selectedRows.length === 0) {
+                    alert('Vui lòng chọn ít nhất một giao dịch để xóa');
+                    return;
+                }
+                
+                if (confirm(`Bạn có chắc chắn muốn xóa ${selectedRows.length} giao dịch đã chọn?`)) {
+                    selectedRows.each(function() {
+                        $(this).closest('tr').remove();
+                    });
+                }
+            });
+
+            $('#selectAllCheckbox').on('change', function() {
+                const isChecked = $(this).is(':checked');
+                $('.row-checkbox').prop('checked', isChecked);
+            });
+        });
+    </script>
+</body>
+</html>
